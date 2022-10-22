@@ -1,8 +1,8 @@
 clear all; close all; clc; rng(0); init_path;
 
 %% parameters
-M_name = 'tr_reg_000';
-N_name = 'tr_reg_023';
+M_name = 'tr_reg_007';
+N_name = 'tr_reg_020';
 C_computation_method = 'GT';      % 'GT' to compute the functional map C from groundtruth, 
                                   % 'NO17' to compute C using NO17
 
