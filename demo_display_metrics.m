@@ -70,58 +70,54 @@ viz_params.diffuseStrength = 0.5;
 
 %% Plot Dis
 fig_Dis = figure('position', [100 100 900 900]);
-tlo = tiledlayout(1,2);
 lim_inf = min([Dis_ours; Dis_LB]);
 lim_sup = max([Dis_ours; Dis_LB])*0.5;      % rescaled for better visualization
 
-nexttile(); utils.plot_scalar_map_2(M, Dis_ours, hot, viz_params);
+subplot(1,2,1); utils.plot_scalar_map_2(M, Dis_ours, hot, viz_params);
 caxis([lim_inf, lim_sup]); 
+colorbar('location', 'southoutside');
 title(['Dis (ours), mean: ', num2str(mean(Dis_ours), '%.1f')]);
 
-nexttile(); utils.plot_scalar_map_2(M, Dis_LB, hot, viz_params);
+subplot(1,2,2); utils.plot_scalar_map_2(M, Dis_LB, hot, viz_params);
 caxis([lim_inf, lim_sup]); 
-colorbar;
+colorbar('location', 'southoutside');
 title(['Dis (LB), mean: ', num2str(mean(Dis_LB), '%.1f')]);
 
-title(tlo, 'Discrimination power', 'fontSize', 24)
-subtitle(tlo, 'Lower (darker) is worse', 'fontSize', 18)
-
+sgtitle({'\fontsize{22}Discrimination power'; '\fontsize{16}Lower (darker) is worse'})
 
 %% Plot EGDC
 fig_EGDC = figure('position', [100 100 900 900]);
-tlo = tiledlayout(1,2);
 lim_inf = min([EGDC_ours; EGDC_LB]);
 lim_sup = max([EGDC_ours; EGDC_LB]);
 
-nexttile(); utils.plot_scalar_map_2(M, EGDC_ours, hot, viz_params);
-caxis([lim_inf, lim_sup]); 
+subplot(1,2,1); utils.plot_scalar_map_2(M, EGDC_ours, hot, viz_params);
+caxis([lim_inf, lim_sup]);
+colorbar('location', 'southoutside'); 
 title(['EGDC (ours), mean: ', num2str(mean(EGDC_ours), '%.3f')]);
 
-nexttile(); utils.plot_scalar_map_2(M, EGDC_LB, hot, viz_params);
+subplot(1,2,2); utils.plot_scalar_map_2(M, EGDC_LB, hot, viz_params);
 caxis([lim_inf, lim_sup]); 
-colorbar;
+colorbar('location', 'southoutside');
 title(['EGDC (LB), mean: ', num2str(mean(EGDC_LB), '%.3f')]);
 
-title(tlo, 'Embedding/Geodeisc distance correlation', 'fontSize', 24)
-subtitle(tlo, 'Lower (darker) is worse', 'fontSize', 18)
+sgtitle({'\fontsize{22}Embedding/Geodeisc distance correlation'; '\fontsize{16}Lower (darker) is worse'})
 
 %% Plot MGD
 fig_MGD = figure('position', [100 100 900 900]);
-tlo = tiledlayout(1,2);
 lim_inf = min([MGD_ours; MGD_LB]);
 lim_sup = max([MGD_ours; MGD_LB])*0.5;      %rescaled for better visualization
 
-nexttile(); utils.plot_scalar_map_2(M, MGD_ours, flipud(hot), viz_params);
+subplot(1,2,1); utils.plot_scalar_map_2(M, MGD_ours, flipud(hot), viz_params);
 caxis([lim_inf, lim_sup]); 
+colorbar('location', 'southoutside');
 title(['MGD (ours), mean: ', num2str(mean(MGD_ours), '%.2f')]);
 
-nexttile(); utils.plot_scalar_map_2(M, MGD_LB, flipud(hot), viz_params);
+subplot(1,2,2); utils.plot_scalar_map_2(M, MGD_LB, flipud(hot), viz_params);
 caxis([lim_inf, lim_sup]); 
-colorbar;
+colorbar('location', 'southoutside');
 title(['MGD (LB), mean: ', num2str(mean(MGD_LB), '%.2f')]);
 
-title(tlo, 'Mean Geodesic Distance (normalized)', 'fontSize', 24)
-subtitle(tlo, 'Higher (darker) is worse', 'fontSize', 18)
+sgtitle({'\fontsize{22}Mean Geodesic Distance (normalized)'; '\fontsize{16}Higher (darker) is worse'})
 
 
 

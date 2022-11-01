@@ -25,13 +25,12 @@ N.our_basis = compute_PC_Gau(N, n_points, sigma, true, para);
 %% visualize basis
 n_tiles = 8;
 fig_basis = figure('position', [100 100 1800 900]);
-tlo = tiledlayout(1,n_tiles);
 for i=1:n_tiles
-    nexttile(tlo);
+    subplot(1,n_tiles,i)
     utils.plot_scalar_map(M, M.our_basis(:,i), utils.cmaps.bwr);
     title(['atom ', num2str(i)]);
 end
-title(tlo, 'PC-Gau basis', ' ', 'fontSize', 30)
+sgtitle('PC-Gau basis', 'fontSize', 30)
 
 
 %% compute C (with ground-truth correspondence)
@@ -69,29 +68,28 @@ viz_params.view = [-37.5 10];
 viz_params.diffuseStrength = 0.5;
 
 fig_matching = figure('position', [100 100 1800 700]);
-tlo = tiledlayout(1,5);
 
-nexttile(); 
+subplot(1,5,1); 
 utils.visualize_map_on_source(N, M, viz_params);
 title('source');
 
-nexttile(); utils.visualize_map_on_target(N, M, T_ours, viz_params);
+subplot(1,5,2); utils.visualize_map_on_target(N, M, T_ours, viz_params);
 title('pMap (ours)');
 
-nexttile(); utils.visualize_map_on_target(N, M, T_LB, viz_params);
+subplot(1,5,3); utils.visualize_map_on_target(N, M, T_LB, viz_params);
 title('pMap (LB)');
 
-nexttile(); utils.plot_scalar_map_2(N, error_ours, flipud(hot), viz_params);
+subplot(1,5,4); utils.plot_scalar_map_2(N, error_ours, flipud(hot), viz_params);
 caxis([lim_inf, lim_sup]); 
+colorbar('location', 'southoutside');
 title(['error (ours): ', num2str(age_ours*1000, '%.1f'), '\cdot 10^{-3}']);
 
-nexttile(); utils.plot_scalar_map_2(N, error_LB, flipud(hot), viz_params);
+subplot(1,5,5); utils.plot_scalar_map_2(N, error_LB, flipud(hot), viz_params);
 caxis([lim_inf, lim_sup]); 
-colorbar;
+colorbar('location', 'southoutside');
 title(['error (LB): ', num2str(age_LB*1000, '%.1f'), '\cdot 10^{-3}']);
 
-title(tlo, 'Example of shape matching using PC-Gau and LB', 'fontSize', 24);
-subtitle(tlo, ['C computed with ', C_computation_method], 'fontSize', 18);
+sgtitle({'\fontsize{22}Example of shape matching using PC-Gau and LB', ['\fontsize{16}C computed with ', C_computation_method]});
 
 
 
