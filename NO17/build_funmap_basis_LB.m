@@ -1,4 +1,4 @@
-function [C, FCTSrc, FCTTrg] = build_funmap_basis_old(Src, Trg, BSrc, BTrg, KSrc_lb, KTrg_lb, SrcLM, TrgLM, para)
+function [C, FCTSrc, FCTTrg] = build_funmap_basis_LB(Src, Trg, BSrc, BTrg, KSrc_lb, KTrg_lb, SrcLM, TrgLM, para)
     %% default parameters
     % Infer landmarks, if not given
     if nargin < 7

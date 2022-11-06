@@ -40,7 +40,7 @@ LM = (500:1000:6000)';
 if strcmpi(C_computation_method, 'NO17')
     % compute functional map C with NO17, for ours and LB
     C_ours = build_funmap_basis(M,N,M.our_basis(:,1:k), N.our_basis(:,1:k), 200, 200, LM, LM);
-    C_LB = build_funmap_basis(M,N,M.Phi(:,1:k), N.Phi(:,1:k), 200, 200, LM, LM);
+    C_LB = build_funmap_basis_LB(M,N,M.Phi(:,1:k), N.Phi(:,1:k), 200, 200, LM, LM);
 else
     % compute functional map C using the ground truth, for ours and LB
     C_ours = N.our_basis(T_corres(:,1), 1:k)\M.our_basis(T_corres(:,2), 1:k);       
